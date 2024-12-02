@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable(); // Added for email verification
             $table->string('password');
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->rememberToken(); // Added for "remember me" functionality
             $table->timestamps();
         });
 
@@ -46,3 +48,4 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+

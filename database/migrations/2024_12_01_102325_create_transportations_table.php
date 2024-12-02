@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
 {
     Schema::create('transportations', function (Blueprint $table) {
-        $table->id(); // Primary key
+        $table->string('id'); // Primary key
         $table->string('type'); // Type of transportation (e.g., bus, train)
         $table->integer('capacity'); // Number of seats/passengers
         $table->enum('status', ['active', 'inactive'])->default('active');        
