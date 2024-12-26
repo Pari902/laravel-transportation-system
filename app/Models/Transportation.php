@@ -17,3 +17,5 @@ class Transportation extends Model
         'status',
     ];
 }
+
+

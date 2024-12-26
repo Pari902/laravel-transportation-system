@@ -1,27 +1,16 @@
 import '../css/app.css';
 import './bootstrap';
 
-import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { createApp, h } from 'vue';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+import { createApp } from 'vue'; // Import Vue
+import CreateRecord from './Pages/CreateRecord.vue'; // Import the CreateRecord component
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+// Create a Vue application instance
+const app = createApp({});
 
-createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) =>
-        resolvePageComponent(
-            `./Pages/${name}.vue`,
-            import.meta.glob('./Pages/**/*.vue'),
-        ),
-    setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .use(ZiggyVue)
-            .mount(el);
-    },
-    progress: {
-        color: '#4B5563',
-    },
-});
+// Register the CreateRecord component globally
+app.component('create-record', CreateRecord);
+
+// Mount the Vue application to the #app div in your Blade file
+app.mount('#app');
+
+

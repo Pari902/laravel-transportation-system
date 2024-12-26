@@ -74,7 +74,7 @@ class TransportationController extends Controller
             'type' => ['required', 'string'],
             'capacity' => ['required', 'integer'],
             'route' => ['required', 'string'],
-            'status' => ['required', 'in:Operational,Maintenance'],
+            'status' => ['required', 'in:Active,Inactive'],
         ]);
     }
 }

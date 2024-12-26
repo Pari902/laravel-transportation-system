@@ -16,6 +16,10 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+        <div id="app">
+            <create-record></create-record>
+        </div>
         @inertia
     </body>
 </html>
+
