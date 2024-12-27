@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TransportationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecordController; // Import the RecordController
 
 // Authentication Routes
 Route::post('/register', [AuthController::class, 'register'])->withoutMiddleware(['auth']);
@@ -18,3 +19,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/transportations/{id}', [TransportationController::class, 'update']); // Update transportation
     Route::delete('/transportations/{id}', [TransportationController::class, 'destroy']); // Delete transportation
 });
+
+// Route for creating a record
+Route::post('/records', [RecordController::class, 'store']);
+Route::get('/records', [RecordController::class, 'index']);
+
+
