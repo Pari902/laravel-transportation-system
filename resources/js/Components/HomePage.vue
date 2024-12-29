@@ -1,13 +1,13 @@
 <template>
     <div>
-      <h1>Dashboard</h1>
-      <p>Welcome to your dashboard! You're successfully logged in.</p>
+      <h1>Welcome to the Homepage</h1>
+      <p>This is the homepage of your application.</p>
     </div>
   </template>
   
   <script>
   export default {
-    name: "DashboardPage",
+    name: "HomePage",
   };
   </script>
   
@@ -16,4 +16,3 @@
     color: #4caf50;
   }
   </style>
-  

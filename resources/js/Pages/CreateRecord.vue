@@ -36,7 +36,7 @@
     methods: {
       async submitForm() {
         try {
-          const response = await axios.post("/api/records", { name: this.name });
+            const response = await axios.post("http://127.0.0.1:8000/api/records", { name: this.name });
           console.log(response.data); // Log the response for debugging
           this.responseMessage = "Record created successfully!"; // Set success message
           this.name = ""; // Reset the input field after successful submission
@@ -48,7 +48,7 @@
       },
       async fetchRecords() {
         try {
-          const response = await axios.get("/api/records");
+            const response = await axios.get("http://127.0.0.1:8000/api/records");
           this.records = response.data; // Update the records array with fetched data
         } catch (error) {
           console.error("Error fetching records:", error);

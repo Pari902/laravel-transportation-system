@@ -15,9 +15,11 @@
     </head>
     <body class="font-sans antialiased">
         <div id="app">
-            <create-record></create-record> <!-- Vue Component -->
+            <router-view></router-view> <!-- Render current route's component -->
         </div>
     </body>
 </html>
+
+
 
 
