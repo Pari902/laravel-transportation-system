@@ -41,11 +41,12 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        \Log::info('User created: ', $user->toArray());
 
         event(new Registered($user));
-
+    
         Auth::login($user);
-
+    
         return redirect(route('dashboard', absolute: false));
     }
 }
