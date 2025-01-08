@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,10 +16,15 @@ Route::get('/', function () {
     ]);
 });
 
-// Dashboard route
+// User Dashboard route
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Admin Dashboard route
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin-dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+});
 
 // Grouped routes for profile management
 Route::middleware('auth')->group(function () {
@@ -32,4 +38,9 @@ Route::view('/create-record', 'app')->name('create-record');
 
 // Include authentication routes
 require __DIR__ . '/auth.php';
+
+
+
+
+
 

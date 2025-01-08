@@ -11,13 +11,16 @@ class AdminMiddleware
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next)
-    {
-        if (Auth::check() && Auth::user()->role === 'admin') {
-            return $next($request);
-        }
-
-        return response()->json(['message' => 'Unauthorized'], 403);
+    public function handle($request, Closure $next)
+{
+    if (Auth::check() && Auth::user()->role === 'admin') {
+        return $next($request);
     }
+
+    return response()->json(['message' => 'Access denied: Admins only'], 403);
 }
+
+}
+
+
 
