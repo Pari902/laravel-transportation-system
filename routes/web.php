@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\UserDashboardController; // Import the new controller
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,9 +18,9 @@ Route::get('/', function () {
 });
 
 // User Dashboard route
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 // Admin Dashboard route
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -38,6 +39,7 @@ Route::view('/create-record', 'app')->name('create-record');
 
 // Include authentication routes
 require __DIR__ . '/auth.php';
+
 
 
 

@@ -42,21 +42,22 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import apiClient from '@/axios'; // Ensure your axios.js file is correctly configured
+import apiClient from '@/axios'; // Ensure your axios instance is correctly configured
 
-const router = useRouter();
 const transportations = ref([]);
 
-// Fetch transportation data
+// Fetch transportation data from the server
 const fetchTransportations = async () => {
     try {
-        const response = await apiClient.get('/transportations');
-        transportations.value = response.data; // Adjust this if your response structure is different
+        const response = await axios.get('http://127.0.0.1:8000/dashboard'); // Full URL
+        console.log('API Response:', response.data);
+        transportations.value = response.data;
     } catch (error) {
-        console.error('Error fetching transportation data:', error);
+        console.error('Error fetching transportation data:', error.response || error.message);
     }
 };
+
+
 
 // Delete transportation by ID
 const deleteTransportation = async (id) => {
@@ -69,19 +70,20 @@ const deleteTransportation = async (id) => {
     }
 };
 
-// Logout user
+// Logout the user
 const logout = () => {
     localStorage.removeItem('token'); // Clear token from storage
-    router.push('/login'); // Redirect to login page
+    window.location.href = '/login'; // Redirect to login page
 };
 
-// Fetch data when component is mounted
+// Fetch data when the component is mounted
 onMounted(() => {
     fetchTransportations();
 });
 </script>
 
 <style scoped>
+/* Styling remains the same */
 h1 {
     color: #4caf50;
 }
@@ -135,6 +137,8 @@ h2 {
     background-color: #d32f2f;
 }
 </style>
+
+
 
   
   
